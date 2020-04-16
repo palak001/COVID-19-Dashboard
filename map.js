@@ -52,7 +52,7 @@ function drawWorldMap(geoData, data, countryData) {
                 tooltip 
                 .style("opacity", 1)
                 .style("left", (d3.event.pageX - tooltip.node().offsetWidth / 2) + "px")
-                .style("top", (d3.event.pageY - tooltip.node().offsetHeight - 10) + "px");
+                .style("top", (d3.event.pageY + 10) + "px");
                 if(data.Country != undefined) {
                     tooltip
                     .html(`
@@ -81,7 +81,10 @@ function drawWorldMap(geoData, data, countryData) {
                 let countryName = isActive ? "" : (country.data()[0].properties.Country || country.data()[0].properties.name) ;
                 let countryCode = isActive ? "" : (country.data()[0].properties.CountryCode || country.data()[0].properties.name);
                 if(countryName && countryCode) {
-                    drawBar(countryData, countryName, countryCode);
+                    drawBar(countryData, countryName, countryCode, "confirmed");
+                    drawBar(countryData, countryName, countryCode, "death");
+                    drawBar(countryData, countryName, countryCode, "recovered");
+
                     d3.selectAll(".country").classed("active", false);
                     country.classed("active", !isActive);
                 }

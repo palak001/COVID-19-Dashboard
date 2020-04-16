@@ -10,8 +10,12 @@ d3.queue()
         let width = +d3.select(".chart-container").node().offsetWidth;
         let height = 300;
         createWorldMap(width, width*4 / 5);
-        createBar(width, height);
+        createBar(width, height, "confirmed");
+        createBar(width, height, "death")
+        createBar(width, height, "recovered");
         drawWorldMap(geoData, caseData.Countries, countryData);
-        drawBar(countryData, "", ""); 
+        drawBar(countryData, "", "", "confirmed");
+        drawBar(countryData, "", "", "death");
+        drawBar(countryData, "", "", "recovered"); 
     
     })
