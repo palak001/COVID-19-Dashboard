@@ -121,10 +121,10 @@ function drawBar(countryData, countryName, countryCode) {
             }
 
         })
-        // .on("mouseout touchend", function() {
-        //     d3.select(".tooltip")
-        //         .style("opacity", 0);
-        // })
+        .on("mouseout touchend", function() {
+            d3.select(".tooltip")
+                .style("opacity", 0);
+        })
         .merge(update)
             .attr("x", function(d, i) {
                 return (barWidth + barPadding) * i; })
