@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>COVID 19 Dashboard</title>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <h2>COVID 19 DASHBOARD</h2>
+        <h2>WORLD</h2>
+        <h2>INDIA</h2>
+    </nav>
+    <section class="container">
+        <div class="chart-container">
+            <svg
+                version="1.1"
+                baseProfile="full"
+                xmlns="http://www.w3.org/2000/svg"
+                id="worldMap">
+            </svg>
+            <!-- <svg
+                version="1.1"
+                baseProfile="full"
+                xmlns="http://www.w3.org/2000/svg"
+                id="indiaMap">
+            </svg> -->
+        </div>
+        <div class="chart-container right">
+            <svg
+                version="1.1"
+                baseProfile="full"
+                xmlns="http://www.w3.org/2000/svg"
+                id="bar1">
+            </svg>
+            <svg
+                version="1.1"
+                baseProfile="full"
+                xmlns="http://www.w3.org/2000/svg"
+                id="bar2">
+            </svg>
+        </div>
+    </section>
+
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://unpkg.com/topojson@3"></script>
+    <script src="map.js"></script>
+    <script src="app.js"></script>
+    <script src="bar1.js"></script>
+
+</body>
+</html>
