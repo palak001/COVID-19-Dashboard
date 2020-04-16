@@ -18,7 +18,6 @@ function drawWorldMap(geoData, data, countryData) {
                 dataNotAvailable: true
             }
         }
-        // console.log(d.properties);
         (countries[0] && countries[0].TotalConfirmed) ? totalConfirmedCases.push(countries[0].TotalConfirmed) : totalConfirmedCases.push(0);
     });
 
