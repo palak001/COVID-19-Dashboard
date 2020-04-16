@@ -14,14 +14,15 @@ function drawWorldMap(geoData, data, countryData) {
         else {
             d.properties = {
                 ...name,
-                TotalConfirmed: 0
+                TotalConfirmed: 0,
+                dataNotAvailable: true
             }
         }
         // console.log(d.properties);
         (countries[0] && countries[0].TotalConfirmed) ? totalConfirmedCases.push(countries[0].TotalConfirmed) : totalConfirmedCases.push(0);
     });
 
-    // console.log(geoData);
+    console.log(geoData);
 
     let colors = ["#E0EEEE", "#66CCCC", "#73B1B7", "#00868B", "#2F4F4F"];
     let max =  d3.max(totalConfirmedCases);
@@ -45,22 +46,51 @@ function drawWorldMap(geoData, data, countryData) {
         .append("path")
             .classed("country", true)
             .attr("d", path)
+            .on("mouseover touchstart", function() {
+                let tooltip = d3.select(".tooltip");
+                let tgt = d3.select(d3.event.target);
+                let data = tgt.data()[0].properties;
+                tooltip 
+                .style("opacity", 1)
+                .style("left", (d3.event.pageX - tooltip.node().offsetWidth / 2) + "px")
+                .style("top", (d3.event.pageY - tooltip.node().offsetHeight - 10) + "px");
+                if(data.Country != undefined) {
+                    tooltip
+                    .html(`
+                        <p>Country: ${data.Country}</p>
+                        <p>Total Confirmed: ${data.TotalConfirmed} </p>
+                        <p>Total Deaths: ${data.TotalDeaths}</p>
+                        <p>Total Recovered: ${data.TotalRecovered}</p>
+                    `)
+                }
+                else {
+                    tooltip
+                    .html(`
+                        <p>Data not available</p>
+                    `)  
+                }
+
+            })
+            .on("mouseout touchend", function() {
+                d3.select(".tooltip")
+                    .style("opacity", 0);
+            })
             .on("click", function() {
                 console.log("clicked");
-                // d3.select('.active').classed('active', false);
-                // d3.select(this).classed('active', true);
                 let country = d3.select(this);
-                console.log(country);
                 let isActive = country.classed("active");
                 let countryName = isActive ? "" : (country.data()[0].properties.Country || country.data()[0].properties.name) ;
-                console.log(countryName);
-                let countryCode = country.data()[0].properties.CountryCode;
-                drawBar(countryData, countryName, countryCode);
-                d3.selectAll(".country").classed("active", false);
-                country.classed("active", !isActive);
+                let countryCode = isActive ? "" : (country.data()[0].properties.CountryCode || country.data()[0].properties.name);
+                if(countryName && countryCode) {
+                    drawBar(countryData, countryName, countryCode);
+                    d3.selectAll(".country").classed("active", false);
+                    country.classed("active", !isActive);
+                }
             })
         .merge(update)
             .attr("fill", d => {
+                if(d.properties.dataNotAvailable === true || d.properties.TotalConfirmed === 0)
+                    return "#ccc";
                 let val = d.properties ? d.properties.TotalConfirmed : 0;
                 return colorScale(val);
             });

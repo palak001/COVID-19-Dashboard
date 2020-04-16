@@ -16,5 +16,5 @@ d3.queue()
         createBar(width, height);
         drawWorldMap(geoData, caseData.Countries, countryData);
         drawBar(countryData, "", ""); //country name
-        
+    
     })
