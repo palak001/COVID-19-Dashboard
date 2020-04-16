@@ -3,10 +3,18 @@ function createWorldMap(width, height) {
     d3.select("#worldMap")
         .attr("height", height)
         .attr("width", width)
+        .append("text")
+        .attr("x", width/2)
+        .attr("y", "1em")
+        .attr("font-size", "3em")
+        .style("font-weight", "bold")
+        .style("text-anchor", "middle")
+        .classed("map-title", true);  
 }
 
 function drawWorldMap(geoData, data, countryData) {
     let totalConfirmedCases = [];
+    d3.select(".map-title").text("Worldwide COVID 19 cases")
     geoData.forEach(d => {
         let countries = data.filter(c => c.Country === d.properties.name || c.CountryCode === d.properties.name);
         if(countries[0])
@@ -23,7 +31,7 @@ function drawWorldMap(geoData, data, countryData) {
 
     console.log(geoData);
 
-    let colors = ["#E0EEEE", "#66CCCC", "#73B1B7", "#00868B", "#2F4F4F"];
+    let colors = ["#f1c40f", "#e67e22", "#e74c3c", "#c0392b", "#ED2939"];
     let max =  d3.max(totalConfirmedCases);
     let domain= [0,max/8, max/4, max/2, max];
     let colorScale = d3.scaleLinear()
@@ -80,7 +88,9 @@ function drawWorldMap(geoData, data, countryData) {
                 let isActive = country.classed("active");
                 let countryName = isActive ? "" : (country.data()[0].properties.Country || country.data()[0].properties.name) ;
                 let countryCode = isActive ? "" : (country.data()[0].properties.CountryCode || country.data()[0].properties.name);
+                console.log(countryName);
                 if(countryName && countryCode) {
+                    console.log(countryName);
                     drawBar(countryData, countryName, countryCode, "confirmed");
                     drawBar(countryData, countryName, countryCode, "death");
                     drawBar(countryData, countryName, countryCode, "recovered");
