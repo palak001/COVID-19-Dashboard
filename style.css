@@ -27,6 +27,7 @@
 
  #barGraph{
      margin-bottom: 20px;
+     display: none;
  }
 /* .chart-container {
     margin: 2%;

@@ -91,16 +91,21 @@ function drawWorldMap(geoData, data, countryData) {
             })
             .on("click", function() {
                 console.log("clicked");
-                var element = document.getElementById("barGraph");
-                element.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
 
                 let country = d3.select(this);
+
+
                 let isActive = country.classed("active");
                 let countryName = isActive ? "" : (country.data()[0].properties.Country || country.data()[0].properties.name) ;
                 let countryCode = isActive ? "" : (country.data()[0].properties.CountryCode || country.data()[0].properties.name);
                 console.log(countryName);
                 if(countryName && countryCode) {
                     console.log(countryName);
+                    d3.select("#barGraph").style("display", "inline");
+                    if(!country.data()[0].properties.dataNotAvailable) {
+                        var element = document.getElementById("barGraph");
+                        element.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+                    }
                     drawBar(countryData, countryName, countryCode, "confirmed");
                     drawBar(countryData, countryName, countryCode, "death");
                     drawBar(countryData, countryName, countryCode, "recovered");
