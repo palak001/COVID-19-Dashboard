@@ -18,7 +18,7 @@
                 version="1.1"
                 baseProfile="full"
                 xmlns="http://www.w3.org/2000/svg"
-                id="worldMap">
+                id="map">
             </svg>
             <!-- <svg
                 version="1.1"
@@ -26,28 +26,32 @@
                 xmlns="http://www.w3.org/2000/svg"
                 id="indiaMap">
             </svg> -->
+            <div id="barGraph">
+                <h2 id = "countryName"></h2>
+                <svg
+                    version="1.1"
+                    baseProfile="full"
+                    xmlns="http://www.w3.org/2000/svg"
+                    id="bar1">
+                </svg>
+                <svg
+                    version="1.1"
+                    baseProfile="full"
+                    xmlns="http://www.w3.org/2000/svg"
+                    id="bar2">
+                </svg>
+                <svg
+                    version="1.1"
+                    baseProfile="full"
+                    xmlns="http://www.w3.org/2000/svg"
+                    id="bar3">
+                </svg>
+            </div>
+            
         </div>
-        <div class="chart-container right">
-            <h2 id = "countryName"></h2>
-            <svg
-                version="1.1"
-                baseProfile="full"
-                xmlns="http://www.w3.org/2000/svg"
-                id="bar1">
-            </svg>
-            <svg
-                version="1.1"
-                baseProfile="full"
-                xmlns="http://www.w3.org/2000/svg"
-                id="bar2">
-            </svg>
-            <svg
-                version="1.1"
-                baseProfile="full"
-                xmlns="http://www.w3.org/2000/svg"
-                id="bar3">
-            </svg>
-        </div>
+        <!-- <div class="chart-container right"> -->
+
+        <!-- </div> -->
     </section>
     <div class="tooltip"></div>
 
@@ -56,6 +60,7 @@
     <script src="map.js"></script>
     <script src="app.js"></script>
     <script src="bar1.js"></script>
+    <script src="indiaMap.js"></script>
 
 </body>
 </html>

@@ -1,5 +1,7 @@
-function createBar(width, height, dataType) {
+function createBar(dataType) {
     let bar;
+    var width = window.innerWidth * .9;
+	var height = window.innerHeight / 3 - 30;
     if(dataType === "confirmed") {
         bar = d3.select("#bar1")
     }
