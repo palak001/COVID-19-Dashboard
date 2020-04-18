@@ -1,6 +1,6 @@
 function createBar(dataType) {
     let bar;
-    var width = window.innerWidth * .9;
+    var width = window.innerWidth * .95;
 	var height = window.innerHeight / 3 - 30;
     if(dataType === "confirmed") {
         bar = d3.select("#bar1")
@@ -24,17 +24,11 @@ function createBar(dataType) {
     bar.append("text")
         .attr("transform", "rotate(-90)")
         .attr("x", - height/2)
-        .attr("dy", "1em")
+        .attr("dy", ".75em")
         .style("text-anchor", "middle")
         .style("font-size", "1em")
         .classed("y-axis-label", true);
 
-    bar.append("text")
-        .attr("x", width/2)
-        .attr("y", "1em")
-        .attr("font-size", "1.5em")
-        .style("text-anchor", "middle")
-        .classed("bar-title", true);
 }
 
 function highlightBars(date, dataType) {
@@ -70,9 +64,9 @@ function drawBar(countryData, countryName, countryCode, dataType) {
 
     let padding = {
         top: 10,
-        right: 10,
+        right: 20,
         bottom: 10,
-        left: 100
+        left: 40
     };
     let barPadding = .5;
     let width = +bar.attr("width");
@@ -98,7 +92,7 @@ function drawBar(countryData, countryName, countryCode, dataType) {
 
     let xScale = d3.scaleLinear()
                     .domain(d3.extent(data, d => d.date))
-                    .range([padding.left, width-padding.right]);
+                    .range([2*padding.left, width-padding.right]);
     let yScale;
     if(dataType === "confirmed") {
         yScale = d3.scaleLinear()
@@ -118,18 +112,19 @@ function drawBar(countryData, countryName, countryCode, dataType) {
     
 
     let  numBars = data.length;
-    let barWidth =  width / numBars - barPadding;
+    console.log(data.length);
+    let barWidth =  (width -2* padding.right - padding.left) / numBars;
 
     let xAxis = d3.axisBottom(xScale);
 
     bar.select(".x-axis")
-        .attr("transform", "translate(0, " + (height - padding.bottom) + ")")
+        .attr("transform", "translate(" + (0) + ", " + (height - padding.bottom) + ")")
         .call(xAxis);
 
     let yAxis = d3.axisLeft(yScale);
 
     bar.select(".y-axis")
-        .attr("transform", "translate(" + (padding.left ) + ",0)")
+        .attr("transform", "translate(" + (2*padding.left ) + ",0)")
         .transition()
         .duration(500)
         .call(yAxis);
@@ -217,7 +212,8 @@ function drawBar(countryData, countryName, countryCode, dataType) {
         })
         .merge(update)
             .attr("x", function(d, i) {
-                return (barWidth + barPadding) * i; })
+                console.log((barWidth + barPadding) * i);
+                return (barWidth) * (i) + 2*padding.left; })
             .attr("width", barWidth - barPadding)
             .transition(t)
             .delay((d, i) => i *10)

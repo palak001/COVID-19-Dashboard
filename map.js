@@ -22,13 +22,13 @@ function drawWorldMap(geoData, data, countryData) {
 	let totalConfirmedCases = [];
     d3.select(".map-title").text("Worldwide COVID 19 cases")
     geoData.forEach(d => {
-        let countries = data.filter(c => c.Country === d.properties.name || c.CountryCode === d.properties.name);
+        let countries = data.filter(c => c.Country === d.properties.name || c.CountryCode === d.properties.name || c.slug === d.properties.name);
         if(countries[0])
             d.properties = countries[0];
-        else {
+        else{
             d.properties = {
-                ...name,
-                TotalConfirmed: 0,
+                name: d.properties.name,
+                // TotalConfirmed: 0,
                 dataNotAvailable: true
             }
         }
@@ -46,9 +46,9 @@ function drawWorldMap(geoData, data, countryData) {
 
 	let map = d3.select("#map");
 
-	let colors = ["#f1c40f", "#e67e22", "#e74c3c", "#c0392b", "#ED2939"];
+	let colors = ["ffed83", "#f1c40f", "#e67e22", "#e74c3c", "#c0392b"];
     let max =  d3.max(totalConfirmedCases);
-    let domain= [0,max/8, max/4, max/2, max];
+    let domain= [0,max/1000, max/100, max/10, max];
     let colorScale = d3.scaleLinear()
                         .domain(domain)
                         .range(colors);
@@ -64,24 +64,35 @@ function drawWorldMap(geoData, data, countryData) {
                 let tooltip = d3.select(".tooltip");
                 let tgt = d3.select(d3.event.target);
                 let data = tgt.data()[0].properties;
+                // console.log(countryData);
                 tooltip 
                 .style("opacity", 1)
                 .style("left", (d3.event.pageX - tooltip.node().offsetWidth / 2) + "px")
                 .style("top", (d3.event.pageY + 10) + "px");
-                if(data.Country != undefined) {
+
+
+                if((data.Country || data.name) && !data.dataNotAvailable) {
                     tooltip
                     .html(`
                         <p>Country: ${data.Country}</p>
                         <p>Total Confirmed: ${data.TotalConfirmed} </p>
                         <p>Total Deaths: ${data.TotalDeaths}</p>
                         <p>Total Recovered: ${data.TotalRecovered}</p>
-                    `)
+                    `)    
+                }
+                else if(countryData[data.name||data.Country]){
+                    tooltip
+                    .html(`
+                        <p>Total Data not available.</p>
+                        <p>For daily basis data,</p> 
+                        <p>Refer to below graph.</p>
+                    `)  
                 }
                 else {
                     tooltip
                     .html(`
-                        <p>Data not available</p>
-                    `)  
+                        <p>Data not available.</p>
+                    `) 
                 }
 
             })
@@ -99,26 +110,28 @@ function drawWorldMap(geoData, data, countryData) {
                 let countryName = isActive ? "" : (country.data()[0].properties.Country || country.data()[0].properties.name) ;
                 let countryCode = isActive ? "" : (country.data()[0].properties.CountryCode || country.data()[0].properties.name);
                 console.log(countryName);
+                console.log(country);
+
                 if(countryName && countryCode) {
-                    console.log(countryName);
-                    d3.select("#barGraph").style("display", "inline");
-                    if(!country.data()[0].properties.dataNotAvailable) {
+                    if((countryData[countryName||countryCode] || countryName === "Greenland")) {
+                        d3.select("#barGraph").style("display", "inline");
                         var element = document.getElementById("barGraph");
                         element.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+                        drawBar(countryData, countryName, countryCode, "confirmed");
+                        drawBar(countryData, countryName, countryCode, "death");
+                        drawBar(countryData, countryName, countryCode, "recovered");
+    
+                        d3.selectAll(".country").classed("active", false);
+                        country.classed("active", !isActive);
                     }
-                    drawBar(countryData, countryName, countryCode, "confirmed");
-                    drawBar(countryData, countryName, countryCode, "death");
-                    drawBar(countryData, countryName, countryCode, "recovered");
 
-                    d3.selectAll(".country").classed("active", false);
-                    country.classed("active", !isActive);
                 }
             })
         .merge(update)
             .attr("fill", d => {
-                if(d.properties.dataNotAvailable === true || d.properties.TotalConfirmed === 0)
+                if(d.properties.dataNotAvailable === true)
                     return "#ccc";
-                let val = d.properties ? d.properties.TotalConfirmed : 0;
+                let val = d.properties.TotalConfirmed;
                 return colorScale(val);
             });
 
