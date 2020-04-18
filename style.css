@@ -4,6 +4,56 @@
     font-family: 'Source Sans Pro', sans-serif;
 }
 
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px;
+}
+#search-container {
+    /* float: right; */
+    display: inline;
+}
+#search-container button i{
+    float: right;
+    padding: 8px 12px;
+    margin-top: 5px;
+    /* margin-right: 16px;  */
+    /* background:  #2c3e50; */
+    border: none;
+    cursor: pointer;
+}
+
+#countryList {
+    /* display: none; */
+    list-style: none;
+}
+#controlHeight {
+    max-height: 500px;
+    overflow: auto;
+    min-width: 450px;
+    float: right;
+    z-index: 1;
+    margin-right: 10px;
+    margin-top: -10px;
+    border-radius: 2%;
+    background-color: white;
+}
+#countryList li {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+input {
+    width: 400px;
+    padding: 12px;
+    /* margin-top: 5px; */
+    border: 1px solid #ddd;
+    font-size: 15px;
+
+}
 
 .container {
     display: flex;

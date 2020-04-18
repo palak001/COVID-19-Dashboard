@@ -4,14 +4,20 @@
     <meta charset="UTF-8">
     <title>COVID 19 Dashboard</title>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- <nav>
+    <nav>
         <h2>COVID 19 DASHBOARD</h2>
-        <h2>WORLD</h2>
-        <h2>INDIA</h2>
-    </nav> -->
+        <div id="search-container">
+            <input id = "searchBar" type = "text" placeholder="Search for countries..."></input>
+        </div>
+    </nav>
+    <div id = "controlHeight">
+        <ul id="countryList">
+        </ul>
+    </div>
     <section class="container">
         <div class="chart-container">
             <svg
