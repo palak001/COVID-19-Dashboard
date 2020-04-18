@@ -111,9 +111,14 @@ function drawWorldMap(geoData, data, countryData) {
                 let countryCode = isActive ? "" : (country.data()[0].properties.CountryCode || country.data()[0].properties.name);
                 console.log(countryName);
                 console.log(country);
+                // console.log(countryData[countryName||countryCode||countryCode.toLowerCase()]);
+                // console.log(countryData[countryCode]);
+                // console.log(countryData[countryName||countryCode]);
+                // console.log(countryData.countryCode);
 
-                if(countryName && countryCode) {
-                    if((countryData[countryName||countryCode] || countryName === "Greenland")) {
+
+                if(countryName || countryCode) {
+                    if((countryData[countryName]|| countryData[countryCode] || countryName === "Greenland")) {
                         d3.select("#barGraph").style("display", "inline");
                         var element = document.getElementById("barGraph");
                         element.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
