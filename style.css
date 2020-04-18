@@ -40,6 +40,7 @@ nav {
     margin-top: -10px;
     border-radius: 2%;
     background-color: white;
+    display: none;
 }
 #countryList li {
     border: 1px solid #ddd;
