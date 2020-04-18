@@ -42,8 +42,6 @@ d3.queue()
             let input = document.getElementById("searchBar");
             let inputText = input.value.toLowerCase();      // so far entered search term
             let li = document.getElementsByTagName("li"); // array of list tags
-            let ul = document.getElementById("controlHeight");
-            ul.style.display = "";
             let liText;
             for(let i = 0; i < li.length; i++) {
                 liText = li[i].innerText;
