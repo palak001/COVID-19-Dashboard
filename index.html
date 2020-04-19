@@ -11,9 +11,6 @@
 <body>
     <div id="navbar">
         <p id="Dashboard"><b>C</b>ovid 19 <b>D</b>ashboard</p>
-        <!-- <div id="search-container">
-            <input id = "searchBar" type = "text" placeholder="Search for countries..." autocomplete="off"></input>
-        </div> -->
         <div id="colorContainer">
             <div id="colorScaleReading">
                 <div>Low</div>
@@ -29,20 +26,20 @@
         </div> 
     </div>
 
-    <div class="wrap">
-        <div id="search-container">
-           <input type="text" id="searchBar" placeholder="What are you looking for?" autocomplete="off">
-           <button type="submit" id="searchButton">
-             <i class="fa fa-search"></i>
-          </button>
+     <div class="search">
+         <div id="search-container">
+             <div class="content">
+                <input type="text" id="searchBar" placeholder="What are you looking for?" autocomplete="off">
+                  <i class="fa fa-search"></i>
+             </div>
+         </div>
+         <div id = "controlHeight">
+            <ul id="countryList">
+            </ul>
         </div>
      </div>
 
     <section class="container">
-        <div id = "controlHeight">
-            <ul id="countryList">
-            </ul>
-        </div>
         <div class="chart-container">
             <svg
                 version="1.1"
