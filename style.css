@@ -73,13 +73,13 @@ li:hover {
     padding: 10px;
 }
 
-input {
+/* input {
     width: 400px;
     padding: 12px;
     border: 1px solid #ddd;
     font-size: 15px;
 
-}
+} */
 
 .container {
     display: flex;
@@ -155,5 +155,56 @@ footer {
     height: 100px;
     margin-top: 100vh;
     }
+    
+
+    @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+    /* body{
+      background: #f2f2f2;
+      font-family: 'Open Sans', sans-serif;
+    } */
+    
+    #search-container {
+      width: 100%;
+      position: relative;
+      display: flex;
+    }
+    
+    #searchBar {
+      width: 100%;
+      border: 3px solid black;
+      border-right: none;
+      padding: 5px;
+      height: 20px;
+      border-radius: 5px 0 0 5px;
+      outline: none;
+      color: #9DBFAF;
+    }
+    
+    #searchBar:focus{
+      color:black;
+    }
+    
+    #searchButton {
+      width: 40px;
+      height: 36px;
+      border: 1px solid black; 
+      background: black;
+      text-align: center;
+      color: #fff;
+      border-radius: 0 5px 5px 0;
+      cursor: pointer;
+      font-size: 25px;
+    }
+    
+    .wrap{
+      z-index: 1;
+      width: 30%;
+      position: absolute;
+      top: 18%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
 
 
