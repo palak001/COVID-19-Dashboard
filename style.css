@@ -26,20 +26,30 @@ nav {
     cursor: pointer;
 }
 
-#countryList {
+#countryList, li {
     /* display: none; */
     list-style: none;
+    cursor: pointer;
 }
+li:hover {
+    background-color: #ccc;
+}
+/* #controlList {
+    position: relative;
+    float: right;
+} */
 #controlHeight {
+    position: absolute;
     max-height: 500px;
     overflow: auto;
     min-width: 450px;
-    float: right;
     z-index: 1;
     margin-right: 10px;
     margin-top: -10px;
     border-radius: 2%;
     background-color: white;
+    display: none;
+    right: 0;
 }
 #countryList li {
     border: 1px solid #ddd;
@@ -49,7 +59,6 @@ nav {
 input {
     width: 400px;
     padding: 12px;
-    /* margin-top: 5px; */
     border: 1px solid #ddd;
     font-size: 15px;
 
@@ -59,6 +68,7 @@ input {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    position: relative;
 }
 
 .right {
@@ -94,7 +104,7 @@ path {
 }
 .country.active {
     stroke: #2c3e50;
-    stroke-width: 2px;
+    stroke-width: 3px;
 }
 
 .y-axis-label {

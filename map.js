@@ -107,14 +107,11 @@ function drawWorldMap(geoData, data, countryData) {
 
 
                 let isActive = country.classed("active");
-                let countryName = isActive ? "" : (country.data()[0].properties.Country || country.data()[0].properties.name) ;
-                let countryCode = isActive ? "" : (country.data()[0].properties.CountryCode || country.data()[0].properties.name);
-                console.log(countryName);
-                console.log(country);
-                // console.log(countryData[countryName||countryCode||countryCode.toLowerCase()]);
-                // console.log(countryData[countryCode]);
-                // console.log(countryData[countryName||countryCode]);
-                // console.log(countryData.countryCode);
+                // let countryName = isActive ? "" : (country.data()[0].properties.Country || country.data()[0].properties.name) ;
+                // let countryCode = isActive ? "" : (country.data()[0].properties.CountryCode || country.data()[0].properties.name);
+
+                let countryName = country.data()[0].properties.Country || country.data()[0].properties.name;
+                let countryCode = country.data()[0].properties.CountryCode || country.data()[0].properties.name;
 
 
                 if(countryName || countryCode) {
@@ -127,15 +124,20 @@ function drawWorldMap(geoData, data, countryData) {
                         drawBar(countryData, countryName, countryCode, "recovered");
     
                         d3.selectAll(".country").classed("active", false);
-                        country.classed("active", !isActive);
+                        // country.classed("active", !isActive);
+                        country.classed("active", true);
                     }
-
                 }
             })
         .merge(update)
-            .attr("fill", d => {
+            .attr("fill", function(d) {
+                // console.log(d3.select(this));
+                let countryName = d3.select(this).data()[0].properties.Country || d3.select(this).data()[0].properties.name;
+                d3.select(this).classed(`${countryName}`, true);
                 if(d.properties.dataNotAvailable === true)
                     return "#ccc";
+                // d3.select(this).classed(`${d.properties.name}`, true);
+
                 let val = d.properties.TotalConfirmed;
                 return colorScale(val);
             });
