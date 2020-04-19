@@ -5,13 +5,13 @@ function createWorldMap() {
 	d3.select("#map")
         .attr("height", height)
 		.attr("width", width)
-		.append("text")
-        .attr("x", width/2)
-        .attr("y", "1em")
-		.attr("font-size", "2em")
-        .style("font-weight", "bold")
-        .style("text-anchor", "middle")
-        .classed("map-title", true);  
+		// .append("text")
+        // .attr("x", width/2)
+        // .attr("y", "1em")
+		// .attr("font-size", "2em")
+        // .style("font-weight", "bold")
+        // .style("text-anchor", "middle")
+        // .classed("map-title", true);  
 }
 
 function drawWorldMap(geoData, data, countryData) {
@@ -20,7 +20,7 @@ function drawWorldMap(geoData, data, countryData) {
 	var height = width/1.85;
 
 	let totalConfirmedCases = [];
-    d3.select(".map-title").text("Worldwide COVID 19 cases")
+    // d3.select(".map-title").text("Worldwide COVID 19 cases")
     geoData.forEach(d => {
         let countries = data.filter(c => c.Country === d.properties.name || c.CountryCode === d.properties.name || c.slug === d.properties.name);
         if(countries[0])
@@ -46,12 +46,18 @@ function drawWorldMap(geoData, data, countryData) {
 
 	let map = d3.select("#map");
 
-	let colors = ["ffed83", "#f1c40f", "#e67e22", "#e74c3c", "#c0392b"];
+    let colors = [ "#F8B195",   "#F67280",   "#C06C84",   "#6C5B7B",   "#355C7D" ];
+    // let colors = ["white", "red"];
     let max =  d3.max(totalConfirmedCases);
     let domain= [0,max/1000, max/100, max/10, max];
+    // let domain = [0, max];
     let colorScale = d3.scaleLinear()
                         .domain(domain)
                         .range(colors);
+    // var colorScale = d3.scaleLog()
+    //                 // .exponent(0.2)
+    //                 .domain([0, max])
+    //                 .range(colors);
 
 	let update = map.selectAll(".country").data(geoData);
 	

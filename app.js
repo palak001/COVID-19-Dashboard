@@ -61,7 +61,7 @@ d3.queue()
         }
 
         function selectedCountryName(e) {
-            console.log(e.target)
+            // console.log(e.target)
             if(!e.target.matches('li')) {
                 return;
             } 
