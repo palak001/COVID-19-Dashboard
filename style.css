@@ -4,27 +4,46 @@
     font-family: 'Quicksand', sans-serif;
 }
 
-nav {
+#navbar {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     background-color: black;
     color: white;
     padding: 20px;
+    font-size: 50px;
+
+}
+#Dashboard {
+    margin-left: 150px;
+}
+#C, #D{
+    font-weight: 600;
+}
+
+#colorContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+#colorScaleReading {
+    display: flex;
+    flex-direction: row;
     font-size: 20px;
+    justify-content: space-between;
+    padding-left: 40px;
+
+}
+#colorScale {
+    display: flex;
+    flex-direction: row;
+    height: 10px;
+    padding-left: 40px;
+    /* width: 400px; */
 }
 
-
-
-#search-container {
-    display: inline;
-}
-#search-container button i{
-    float: right;
-    padding: 8px 12px;
-    margin-top: 5px;
-    border: none;
-    cursor: pointer;
+#colorScale div{
+    width: 70px;
 }
 
 #countryList, li {
@@ -47,6 +66,7 @@ li:hover {
     background-color: white;
     display: none;
     right: 0;
+    /* margin-right: 50px; */
 }
 #countryList li {
     border: 1px solid #ddd;
