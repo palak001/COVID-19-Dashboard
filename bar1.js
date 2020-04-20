@@ -34,7 +34,7 @@ function createBar(dataType) {
 
 }
 
-function highlightBars(date, dataType) {
+function highlightBars(date, dataType, colorScale) {
     let bar;
     if(dataType === "confirmed") {
         bar = d3.select("#bar1")
@@ -47,7 +47,17 @@ function highlightBars(date, dataType) {
     }
     
     bar.selectAll("rect")
-          .attr("fill", d => d.date === date ? "#a8a494" : "#61605c")
+        //   .attr("fill", d => d.date === date ? "#a8a494" : "#61605c")
+        .attr("fill", d => {
+            if(d.date === date)
+                return "#ccc";
+            else if(dataType === "confirmed")
+                return colorScale(d.confirmed);
+            else if(dataType === "death")
+                return colorScale(d.deaths);
+            else if(dataType === "recovered")
+                return colorScale(d.recovered);
+          })
 }
 
 function drawBar(countryData, countryName, countryCode, dataType) {
@@ -100,25 +110,36 @@ function drawBar(countryData, countryName, countryCode, dataType) {
                     .domain(d3.extent(data, d => d.date))
                     .range([2*padding.left, width-padding.right]);
     let yScale;
+    let max;
     if(dataType === "confirmed") {
+        max = d3.max(data, d => d.confirmed);
         yScale = d3.scaleLinear()
         .domain([0, d3.max(data, d => d.confirmed)])
         .range([height - padding.bottom, padding.top]);
     }
     else if(dataType === "death") {
+        max = d3.max(data, d => d.deaths);
         yScale = d3.scaleLinear()
         .domain([0, d3.max(data, d => d.deaths)])
         .range([height - padding.bottom, padding.top]);
         }
     else if(dataType === "recovered") {
+        max = d3.max(data, d => d.recovered);
         yScale = d3.scaleLinear()
         .domain([0, d3.max(data, d => d.recovered)])
         .range([height - padding.bottom, padding.top]);
     }
+    console.log(max);
     
+    let barColorDomain = [0, max/1000, max/100, max/10, max];
+    let colors = ["#F8B195",   "#F67280",   "#C06C84",   "#6C5B7B",   "#355C7D" ];
+    let colorScale = d3.scaleLinear()
+                        .domain(barColorDomain)
+                        .range(colors);
+    // console.log(colorScale);
 
     let  numBars = data.length;
-    console.log(data.length);
+    // console.log(data.length);
     let barWidth =  (width -2* padding.right - padding.left) / numBars;
 
     let xAxis = d3.axisBottom(xScale);
@@ -179,7 +200,7 @@ function drawBar(countryData, countryName, countryCode, dataType) {
             let tooltip = d3.select(".tooltip");
             let tgt = d3.select(d3.event.target);
             let bardata = tgt.data()[0];
-            highlightBars(bardata.date, dataType);
+            highlightBars(bardata.date, dataType, colorScale);
             tooltip 
             .style("opacity", 1)
             .style("left", (d3.event.pageX - tooltip.node().offsetWidth / 2) + "px")
@@ -212,13 +233,20 @@ function drawBar(countryData, countryName, countryCode, dataType) {
         .on("mouseout touchend", function() {
             bar
                 .selectAll("rect")
-                .attr("fill", "#61605c");
+                .attr("fill", d => {
+                    if(dataType === "confirmed")
+                        return colorScale(d.confirmed);
+                    else if(dataType === "death")
+                        return colorScale(d.deaths);
+                    else if(dataType === "recovered")
+                        return colorScale(d.recovered);
+                });
             d3.select(".tooltip")
                 .style("opacity", 0);
         })
         .merge(update)
             .attr("x", function(d, i) {
-                console.log((barWidth + barPadding) * i);
+                // console.log((barWidth + barPadding) * i);
                 return (barWidth) * (i) + 2*padding.left; })
             .attr("width", barWidth - barPadding)
             .transition(t)
@@ -239,7 +267,14 @@ function drawBar(countryData, countryName, countryCode, dataType) {
                     else if(dataType === "recovered")
                         return height - padding.bottom - yScale(d.recovered);
                 })
-                .attr("fill", "#61605c");
+                .attr("fill", d => {
+                    if(dataType === "confirmed")
+                        return colorScale(d.confirmed);
+                    else if(dataType === "death")
+                        return colorScale(d.deaths);
+                    else if(dataType === "recovered")
+                        return colorScale(d.recovered);
+                });
 
     // d3.select("footer").style("display", "block");
 }

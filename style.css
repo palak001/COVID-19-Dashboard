@@ -14,12 +14,21 @@ body {
     /* box-sizing: border-box; */
 }
 
+#baseSheet {
+    width: 100vh;
+    height: 100vh;
+    z-index: 2;
+    position: absolute;
+}
+
 .main-container {
     display: flex;
     flex-direction: column;
     /* justify-content: space-evenly; */
     /* height: 100vh; */
     flex: 1 0 auto;
+    position: relative;
+    z-index: 3;
 }
 
 /* #baseSheet {
@@ -141,8 +150,9 @@ path {
     cursor: pointer;
 }
 .country.active {
+    /* stroke: black; */
     stroke: black;
-    stroke-width: 3px;
+    stroke-width: 2px;
 }
 
 .y-axis-label {

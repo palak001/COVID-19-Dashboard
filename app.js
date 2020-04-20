@@ -17,30 +17,6 @@ d3.queue()
         drawBar(countryDailyData, "", "", "death");
         drawBar(countryDailyData, "", "", "recovered");
 
-        // function adjustMap(x) {
-        //     if(x.matches) {
-        //         console.log("matched");
-        //         // createWorldMap();
-        //         createBar("confirmed");
-        //         createBar("death")
-        //         createBar("recovered");
-        //         // drawWorldMap(worldGeoData, worldCaseData.Countries, countryDailyData);
-        //         drawBar(countryDailyData, "", "", "confirmed");
-        //         drawBar(countryDailyData, "", "", "death");
-        //         drawBar(countryDailyData, "", "", "recovered");
-        //     }
-
-        // }
-        // if(matchMedia) {
-        //     let x = window.matchMedia("(max-width: 800px");
-        //     x.addListener(adjustMap);
-        //     adjustMap(x);
-        // }
-
-
-
-        
-
                 //list of all country names
                 let ul = document.getElementById("countryList");
                 for(let i = 0; i < worldCaseData.Countries.length; i++) {
@@ -51,25 +27,23 @@ d3.queue()
                     li.innerHTML = `${countryName}`;
                     ul.appendChild(li);
                 }
-        
+                
+                // Event Listeners
                 ul.addEventListener("click", selectedCountryName);
+                document.getElementsByTagName("body")[0].addEventListener("click", bodyClicked);
                 let searchBar = document.getElementById("searchBar");
                 searchBar.addEventListener("keyup", searchFunc);
         
-                searchBar.onblur = function() {
-                    document.getElementById("controlHeight").style.zIndex = -5;
-                    // console.log(e.relatedTarget);
-                    // console.log(document.activeElement.tagName);
-                    // if(document.activeElement.tagName === "ul" || document.activeElement.tagName === "li") return;
-                    // document.getElementById("controlHeight").style.display = "none";
-                }
-                searchBar.onfocus = function() {
-                    document.getElementById("controlHeight").style.display = "block";
-                    document.getElementById("controlHeight").style.zIndex = 3;
+
+                function bodyClicked(e) {
+                    console.log("parent");
+                    document.getElementById("controlHeight").style.display = "none";
+
                 }
         
                 function searchFunc() {
                     let input = document.getElementById("searchBar");
+                    document.getElementById("controlHeight").style.display = "block";
                     let inputText = input.value.toLowerCase();      // so far entered search term
                     let li = document.getElementsByTagName("li"); // array of list tags
                     let liText;
@@ -86,21 +60,18 @@ d3.queue()
                 }
         
                 function selectedCountryName(e) {
-                    // console.log(e.target)
+                    e.stopPropagation();
                     if(!e.target.matches('li')) {
                         return;
                     } 
-                    document.getElementById("controlHeight").style.display = "none";
-                    document.getElementById("searchBar").value = e.target.innerText;
                     let searchTerm = e.target.innerText;
                     let countries = document.getElementsByClassName("country");
-                    // console.log(searchTerm);
-                    // console.log(countries);
                     let flag = 0;
                     for(let i = 0; i < countries.length; i++) {
-                        // console.log(countries[i].classList.contains(searchTerm));
                         if(countries[i].classList.contains(searchTerm)) {
                             flag = 1;
+                            document.getElementById("controlHeight").style.display = "none";
+                            document.getElementById("searchBar").value = searchTerm;
                             d3.select(".active").classed("active", false);
                             d3.select(`.${searchTerm}`).classed("active", true);
                         }
