@@ -118,9 +118,12 @@ function drawWorldMap(geoData, data, countryData) {
 
                 if(countryName || countryCode) {
                     if((countryData[countryName]|| countryData[countryCode] || countryName === "Greenland")) {
-                        d3.select("#barGraph").style("display", "inline");
+                        d3.select("#barGraph").style("display", "block");
                         var element = document.getElementById("barGraph");
                         element.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+                        createBar("confirmed");
+                        createBar("death")
+                        createBar("recovered");
                         drawBar(countryData, countryName, countryCode, "confirmed");
                         drawBar(countryData, countryName, countryCode, "death");
                         drawBar(countryData, countryName, countryCode, "recovered");

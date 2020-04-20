@@ -2,7 +2,12 @@ function createBar(dataType) {
     let bar;
     var width = window.innerWidth * .9;
     var height = window.innerHeight / 3 - 30;
+    // let width = document.documentElement.clientWidth* .9;
+    // let height = document.documentElement.clientHeight/3 - 30;
+    // console.log("palak");
+
     
+
     if(dataType === "confirmed") {
         bar = d3.select("#bar1")
     }
@@ -13,11 +18,12 @@ function createBar(dataType) {
             bar = d3.select("#bar3")
     }
 
-    bar  
-        // .attr("viewBox", `0 0 ${width} ${height}`)
-        // .attr('preserveAspectRatio', "xMinYMin meet");          
-        .attr("width", width)
-        .attr("height", height);
+    bar     
+        // .attr("preserveAspectRatio", "xMinYMin meet")
+        .attr("viewBox", `0 0 ${width} ${height}`)     
+        // .attr("width", width)
+        // .attr("height", height);
+        // .attr("viewBox", `0 0 ${width} ${height}`);
 
     bar.append("g")
         .classed("x-axis", true);
@@ -47,7 +53,6 @@ function highlightBars(date, dataType, colorScale) {
     }
     
     bar.selectAll("rect")
-        //   .attr("fill", d => d.date === date ? "#a8a494" : "#61605c")
         .attr("fill", d => {
             if(d.date === date)
                 return "#ccc";
@@ -82,12 +87,12 @@ function drawBar(countryData, countryName, countryCode, dataType) {
         left: 40
     };
     let barPadding = .5;
-    let width = +bar.attr("width");
-    let height = +bar.attr("height");
-    // var width = window.innerWidth * .95;
-    // var height = window.innerHeight / 3 - 30;
-// console.log(width);
 
+    var width = window.innerWidth * .9;
+    var height = window.innerHeight / 3 - 30;
+    // let width = +bar.attr("width");
+    // let height = +bar.attr("height");
+// console.log(width);
     let data = countryData[countryName] || countryData[countryCode];
     // console.log(data);
     if(!data){
@@ -129,7 +134,7 @@ function drawBar(countryData, countryName, countryCode, dataType) {
         .domain([0, d3.max(data, d => d.recovered)])
         .range([height - padding.bottom, padding.top]);
     }
-    console.log(max);
+    // console.log(max);
     
     let barColorDomain = [0, max/1000, max/100, max/10, max];
     let colors = ["#F8B195",   "#F67280",   "#C06C84",   "#6C5B7B",   "#355C7D" ];
@@ -276,8 +281,5 @@ function drawBar(countryData, countryName, countryCode, dataType) {
                         return colorScale(d.recovered);
                 });
 
-    // d3.select("footer").style("display", "block");
 }
-
-
 
