@@ -2,18 +2,14 @@ function createWorldMap() {
 	var width = window.innerWidth * .97;
 	var height = width/1.85;
 
-	d3.select("#map")
-        .attr("height", height)
-		.attr("width", width)
-		// .append("text")
-        // .attr("x", width/2)
-        // .attr("y", "1em")
-		// .attr("font-size", "2em")
-        // .style("font-weight", "bold")
-        // .style("text-anchor", "middle")
-        // .classed("map-title", true);  
-}
+    d3.select("#map")
+    .attr("viewBox", `0 0 ${width} ${height}`);
+        // .attr("height", height)
+        // .attr("width", width)
+        // .attr("height", "100%")
+        // .attr("width", "100%")
 
+}
 function drawWorldMap(geoData, data, countryData) {
 	
 	var width = window.innerWidth * .97;
@@ -107,7 +103,7 @@ function drawWorldMap(geoData, data, countryData) {
                     .style("opacity", 0);
             })
             .on("click", function() {
-                console.log("clicked");
+                // console.log("clicked");
 
                 let country = d3.select(this);
 
@@ -148,4 +144,5 @@ function drawWorldMap(geoData, data, countryData) {
                 return colorScale(val);
             });
 
+            
 }

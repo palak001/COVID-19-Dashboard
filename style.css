@@ -6,19 +6,57 @@
     font-family: 'Quicksand', sans-serif;
 }
 
+body {
+    display: flex;
+    flex-direction: column; 
+    height: 100vh; 
+    margin:0;
+    /* box-sizing: border-box; */
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-evenly; */
+    /* height: 100vh; */
+    flex: 1 0 auto;
+}
+
+/* #baseSheet {
+    position: relative;
+    background-color: white;
+    /* z-index: 1; */
+    /* height: 100%;
+    width: 100%; */
+/* }  */
+/* .container {
+    z-index: 2;
+}
+.search{
+    z-index: 3;
+}
+#controlHeight{
+    z-index: 3;
+} */
+
+
 #navbar {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     background-color: black;
     color: white;
     padding: 20px;
     font-size: 50px;
+    flex-wrap: wrap;
+    /* justify-content: flex-end; */
+    align-self: center;
+    width: 100vw;
+}
 
-}
-#Dashboard {
+/* #Dashboard {
     margin-left: 150px;
-}
+} */
 #C, #D{
     font-weight: 600;
 }
@@ -26,7 +64,8 @@
 #colorContainer {
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    /* padding: 30px; */
+    /* margin-left: 150px; */
 }
 #colorScaleReading {
     display: flex;
@@ -34,6 +73,7 @@
     font-size: 20px;
     justify-content: space-between;
     padding-left: 40px;
+    box-sizing: border-box;
 
 }
 #colorScale {
@@ -41,17 +81,33 @@
     flex-direction: row;
     height: 10px;
     padding-left: 40px;
+
 }
 
 #colorScale div{
     width: 70px;
 }
 
+@media (max-width: 800px){
+    #navbar {
+        /* flex-direction: column; */
+        padding: 50px;
+        width: 100vw;
+        /* padding: 20px; */
+        font-size: 50px;
+        /* justify-content: center; */
+        /* align-items: center; */
+    }
+}
+
+
+
 .container {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     position: relative;
+    /* z-index: 2; */
 }
 
 .right {
@@ -62,15 +118,15 @@
 
  .chart-container {
     display: inline-block;
-    width: 100vh;
-    height: 100vh;
+    /* width: 100vh;
+    height: 100vh; */
     margin: 1% 2%; 
     vertical-align: top;
  }
 
- #barGraph{
+ /* #barGraph{
      margin-bottom: 20px;
- }
+ } */
 
 
 path {
@@ -110,18 +166,20 @@ path {
     margin: 2px;
 }
 
-
+/* @media (max-width: 800px){
+    .chart-container {
+        width: 800px;
+    }
+} */
 
 .search {
-    position: absolute;
-    z-index: 1;
     width: 100%;
     height: 10%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* margin-top: -22%; */
+    padding: 20px;
 }
 
 #search-container {
@@ -145,12 +203,12 @@ input {
     box-shadow: none;
     height: 100%;
     background: transparent;
-}
-    
-i {
+}   
+i{
     flex: 0 0 auto;
     margin-left: 5px;
 }
+
 
 #countryList, li {
     list-style: none;
@@ -167,7 +225,7 @@ li:hover {
     max-height: 500px;
     overflow: auto;
     min-width: 450px;
-    z-index: 1;
+    /* z-index: 1; */
     border-radius: 2%;
     background-color: white;
     display: none;
@@ -182,11 +240,55 @@ li:hover {
     -ms-overflow-style: none;
 }
 
-footer {
+/* footer {
     background-color: black;
     position: relative;
     width: 100%;
     height: 100px;
-    margin-top: 100vh;
+    /* margin-top: 100vh; */
+    /* display: none; */
+/* }  */
+
+#footer{
+    /* justify-self: stretch; */
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: space-around; */
+    background-color: black;
+    /* height: 400px; */
+    width: 100vw;
+    color: #fff;
+    padding: 50px 0;
 }
+
+#footer ul{
+    display: flex;
+}
+
+#footer ul li{
+    margin-left: 16px;
+}
+
+#footer p{
+    text-transform: uppercase;
+    font-size: 14px;
+    opacity: 0.6;
+    align-self: center;
+}
+
+@media (max-width: 1100px){
+    #footer{
+        flex-direction: column;
+        height: 200px;
+        width: 100vw;
+    }
+    #footer p{
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    #footer ul li{
+        margin: 0 8px;
+    }
+}
+
     

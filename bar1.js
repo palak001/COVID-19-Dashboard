@@ -1,7 +1,8 @@
 function createBar(dataType) {
     let bar;
-    var width = window.innerWidth * .95;
-	var height = window.innerHeight / 3 - 30;
+    var width = window.innerWidth * .9;
+    var height = window.innerHeight / 3 - 30;
+    
     if(dataType === "confirmed") {
         bar = d3.select("#bar1")
     }
@@ -12,7 +13,9 @@ function createBar(dataType) {
             bar = d3.select("#bar3")
     }
 
-    bar            
+    bar  
+        // .attr("viewBox", `0 0 ${width} ${height}`)
+        // .attr('preserveAspectRatio', "xMinYMin meet");          
         .attr("width", width)
         .attr("height", height);
 
@@ -71,6 +74,10 @@ function drawBar(countryData, countryName, countryCode, dataType) {
     let barPadding = .5;
     let width = +bar.attr("width");
     let height = +bar.attr("height");
+    // var width = window.innerWidth * .95;
+    // var height = window.innerHeight / 3 - 30;
+// console.log(width);
+
     let data = countryData[countryName] || countryData[countryCode];
     // console.log(data);
     if(!data){
@@ -89,7 +96,6 @@ function drawBar(countryData, countryName, countryCode, dataType) {
         var day=date.getDate();
         data[0].date=year+"-"+month+"-"+day;
     }
-
     let xScale = d3.scaleLinear()
                     .domain(d3.extent(data, d => d.date))
                     .range([2*padding.left, width-padding.right]);
@@ -234,4 +240,9 @@ function drawBar(countryData, countryName, countryCode, dataType) {
                         return height - padding.bottom - yScale(d.recovered);
                 })
                 .attr("fill", "#61605c");
+
+    // d3.select("footer").style("display", "block");
 }
+
+
+
