@@ -35,7 +35,7 @@ function createBar(dataType) {
         .attr("x", - height/2)
         .attr("dy", ".75em")
         .style("text-anchor", "middle")
-        .style("font-size", "1em")
+        .style("font-size", "20px")
         .classed("y-axis-label", true);
 
 }

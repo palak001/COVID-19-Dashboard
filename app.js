@@ -9,13 +9,13 @@ d3.queue()
         // document.getElementById("barGraph").style.maxWidth = window.innerWidth;
 
         createWorldMap();
-        // createBar("confirmed");
-        // createBar("death")
-        // createBar("recovered");
+        createBar("confirmed");
+        createBar("death")
+        createBar("recovered");
         drawWorldMap(worldGeoData, worldCaseData.Countries, countryDailyData);
-        // drawBar(countryDailyData, "", "", "confirmed");
-        // drawBar(countryDailyData, "", "", "death");
-        // drawBar(countryDailyData, "", "", "recovered");
+        drawBar(countryDailyData, "", "", "confirmed");
+        drawBar(countryDailyData, "", "", "death");
+        drawBar(countryDailyData, "", "", "recovered");
 
 
         //list of all country names
