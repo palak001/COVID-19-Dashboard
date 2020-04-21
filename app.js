@@ -8,7 +8,7 @@ d3.queue()
         let worldGeoData = topojson.feature(worldMapData, worldMapData.objects.countries).features;
         createWorldMap();
         drawWorldMap(worldGeoData, worldCaseData.Countries, countryDailyData);
-
+        d3.select("#text-area").style("display", "block");
 
         Date.prototype.toShortFormat = function() {
 
