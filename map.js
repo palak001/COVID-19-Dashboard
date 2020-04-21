@@ -146,6 +146,5 @@ function drawWorldMap(geoData, data, countryData) {
                 let val = d.properties.TotalConfirmed;
                 return colorScale(val);
             });
-
-            
+      
 }

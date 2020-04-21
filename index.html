@@ -6,11 +6,10 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Quicksand:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="baseSheet">
-    </div>
     <div class="main-container">
         <div id="navbar">
             <div id="Dashboard"><b>C</b>ovid 19 <b>D</b>ashboard</div>
@@ -41,10 +40,10 @@
                </ul>
            </div>
         </div>
-
-    
-        <!-- <section class="container"> -->
             <div class="chart-container">
+                <div class="loader">
+                    <img src="loading.svg" alt="loader" />
+                </div>
                 <div id="worldMap">
                     <svg
                         version="1.1"
@@ -83,18 +82,26 @@
                 
             </div>
             <div class="tooltip"></div>
-        <!-- </section> -->
     </div>
-    <!-- <div id="footer">
-    </div> -->
+    <div id="footer">
+        <div id="footer-text">Copyright &copy; 2020 Palak</div>
+        <div id="footer-list">
+            <ul>
+                <li><a href="#"><i class="fab fa-twitter-square fa-2x"></i></a></li>
+                <li><a href="#"><i class="fab fa-facebook-square fa-2x"></i></a></li>
+                <li><a href="#"><i class="fab fa-github-square fa-2x"></i></a></li>
+            </ul>
+        </p>
+    </div>
+
 
     
     <script src="https://d3js.org/d3.v4.js"></script>
     <script src="https://unpkg.com/topojson@3"></script>
-    <!-- <script src="main.js"></script> -->
     <script src="map.js"></script>
     <script src="app.js"></script>
     <script src="bar1.js"></script>
+
 
 </body>
 </html>

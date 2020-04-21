@@ -2,9 +2,6 @@ function createBar(dataType) {
     let bar;
     var width = window.innerWidth * .9;
     var height = window.innerHeight / 3 - 30;
-    // let width = document.documentElement.clientWidth* .9;
-    // let height = document.documentElement.clientHeight/3 - 30;
-    // console.log("palak");
 
     
 
@@ -110,10 +107,12 @@ function drawBar(countryData, countryName, countryCode, dataType) {
         var month=date.getMonth()+1 //getMonth is zero based;
         var day=date.getDate();
         data[0].date=year+"-"+month+"-"+day;
+        // console.log(data[0].date);
     }
     let xScale = d3.scaleLinear()
                     .domain(d3.extent(data, d => d.date))
                     .range([2*padding.left, width-padding.right]);
+// console.log(d3.extent(data, d => d.date));
     let yScale;
     let max;
     if(dataType === "confirmed") {

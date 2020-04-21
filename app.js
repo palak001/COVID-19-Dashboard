@@ -7,7 +7,6 @@ d3.queue()
 
         let worldGeoData = topojson.feature(worldMapData, worldMapData.objects.countries).features;
         // document.getElementById("barGraph").style.maxWidth = window.innerWidth;
-
         createWorldMap();
         createBar("confirmed");
         createBar("death")
