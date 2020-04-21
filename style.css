@@ -290,6 +290,10 @@ li:hover {
     font-size: 20px;
 }
 
+#barGraph h2 {
+    text-align: center;
+}
+
 #barGraph1, #barGraph2, #barGraph3{
     display: block;
     position: relative;
