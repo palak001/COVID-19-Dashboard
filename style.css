@@ -33,7 +33,8 @@ body {
     font-size: 50px;
     flex-wrap: wrap;
     align-self: center;
-    width: 100vw;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 
@@ -144,7 +145,7 @@ path {
 
 
 .search {
-    width: 100%;
+    width: 90%;
     height: 10%;
     display: flex;
     flex-direction: column;
