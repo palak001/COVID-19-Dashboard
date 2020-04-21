@@ -107,7 +107,7 @@ function drawWorldMap(geoData, data, countryData) {
 
                 let country = d3.select(this);
 
-
+                d3.select("#text-area").style("display", "none");
                 let isActive = country.classed("active");
                 // let countryName = isActive ? "" : (country.data()[0].properties.Country || country.data()[0].properties.name) ;
                 // let countryCode = isActive ? "" : (country.data()[0].properties.CountryCode || country.data()[0].properties.name);

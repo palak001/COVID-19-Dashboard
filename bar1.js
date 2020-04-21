@@ -17,10 +17,7 @@ function createBar(dataType) {
 
     bar     
         .attr("preserveAspectRatio", "xMinYMin meet")
-        .attr("viewBox", `0 0 ${width} ${height}`)     
-        // .attr("width", width)
-        // .attr("height", height);
-        // .attr("viewBox", `0 0 ${width} ${height}`);
+        .attr("viewBox", `0 0 ${width} ${height}`)  
 
     bar.append("g")
         .classed("x-axis", true);
@@ -87,9 +84,6 @@ function drawBar(countryData, countryName, countryCode, dataType) {
 
     var width = window.innerWidth * .9;
     var height = window.innerHeight / 3 - 30;
-    // let width = +bar.attr("width");
-    // let height = +bar.attr("height");
-// console.log(width);
     let data = countryData[countryName] || countryData[countryCode];
     // console.log(data);
     if(!data){

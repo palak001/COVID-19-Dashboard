@@ -6,15 +6,31 @@ d3.queue()
         if(error) throw error;
 
         let worldGeoData = topojson.feature(worldMapData, worldMapData.objects.countries).features;
-        // document.getElementById("barGraph").style.maxWidth = window.innerWidth;
         createWorldMap();
-        createBar("confirmed");
-        createBar("death")
-        createBar("recovered");
         drawWorldMap(worldGeoData, worldCaseData.Countries, countryDailyData);
-        drawBar(countryDailyData, "", "", "confirmed");
-        drawBar(countryDailyData, "", "", "death");
-        drawBar(countryDailyData, "", "", "recovered");
+
+
+        Date.prototype.toShortFormat = function() {
+
+            var month_names =["Jan","Feb","Mar",
+                              "Apr","May","Jun",
+                              "Jul","Aug","Sep",
+                              "Oct","Nov","Dec"];
+            
+            var day = this.getDate();
+            var month_index = this.getMonth();
+            var year = this.getFullYear();
+            
+            return "" + day + " " + month_names[month_index] + " " + year;
+        }
+        
+        let today = new Date();
+
+        d3.select("#text-area").html(`
+            <p><span style="color: #F67280">Globally</span>, as of <span style="color: #F67280">2:00am CEST, ${today}</span>, there have been <b>${worldCaseData.Global.TotalConfirmed.toLocaleString()}</b> confirmed cases of COVID-19, including <b>${worldCaseData.Global.TotalDeaths.toLocaleString()}</b> deaths and <b>${worldCaseData.Global.TotalRecovered.toLocaleString()}</b> recovery, reported to WHO.</p>
+            <p>Click on the map to see country-wise cases.</p>
+        `);
+
 
 
         //list of all country names
