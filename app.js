@@ -48,20 +48,23 @@ d3.queue()
         ul.addEventListener("click", selectedCountryName);
         document.getElementsByTagName("body")[0].addEventListener("click", bodyClicked);
         let searchBar = document.getElementById("searchBar");
+        searchBar.onclick = function(e) {
+            e.stopPropagation();
+            document.getElementById("controlHeight").style.display = "block";
+            d3.select("body").style("opacity", 0.5);
+            
+        }
         searchBar.addEventListener("keyup", searchFunc);
-        // searchBar.onfocus = (e) => {
-        //     e.stopPropagation();
-        //     document.getElementById("controlHeight").style.display = "block";
-        // }
 
         function bodyClicked(e) {
-            console.log("parent");
+            d3.select("body").style("opacity", 1);
             document.getElementById("controlHeight").style.display = "none";
 
         }
 
         function searchFunc() {
             // let input = document.getElementById("searchBar");
+            d3.select("body").style("opacity", 0.5);
             document.getElementById("controlHeight").style.display = "block";
             let inputText = searchBar.value.toLowerCase();      // so far entered search term
             let li = document.getElementsByTagName("li"); // array of list tags
@@ -80,6 +83,7 @@ d3.queue()
 
         function selectedCountryName(e) {
             e.stopPropagation();
+            d3.select("body").style("opacity", 1);
             if(!e.target.matches('li')) {
                 return;
             } 
@@ -97,6 +101,7 @@ d3.queue()
             }
             if(flag === 0)
             {
+                document.getElementById("controlHeight").style.display = "none";
                 d3.selectAll(".country").classed("active", false);
             }
         }

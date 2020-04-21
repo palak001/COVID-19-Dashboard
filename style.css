@@ -4,6 +4,7 @@
     margin: 0;
     padding: 0;
     font-family: 'Quicksand', sans-serif;
+    /* border: 1px solid forestgreen; */
 }
 
 body {
@@ -151,12 +152,13 @@ path {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 25px;
+    position: relative;
 }
 
 #search-container {
-    width: 400px;
-    height: 20px;
+    width: 500px;
+    height: 40px;
     background: white;
     border: 1px solid gray;
     border-radius: 20px;
@@ -202,11 +204,11 @@ li:hover {
     max-height: 500px;
     overflow: auto;
     min-width: 450px;
-    /* z-index: 1; */
+    z-index: 5;
     border-radius: 2%;
     background-color: white;
     display: none;
-    margin-top: 15%;
+    margin-top: 20%;
 }
 
 #controlHeight::-webkit-scrollbar {
