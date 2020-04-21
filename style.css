@@ -206,9 +206,17 @@ li:hover {
     min-width: 450px;
     z-index: 5;
     border-radius: 2%;
-    background-color: white;
+    /* background-color: white; */
     display: none;
     margin-top: 20%;
+    background-color: black;
+    color: white;
+}
+
+@media (max-width: 600px){
+    #controlHeight {
+        margin-top: 35%;
+    }
 }
 
 #controlHeight::-webkit-scrollbar {

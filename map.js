@@ -104,7 +104,8 @@ function drawWorldMap(geoData, data, countryData) {
             })
             .on("click", function() {
                 // console.log("clicked");
-
+                //clear search bar
+                document.getElementById("searchBar").value = "";
                 let country = d3.select(this);
 
                 d3.select("#text-area").style("display", "none");

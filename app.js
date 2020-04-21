@@ -51,20 +51,23 @@ d3.queue()
         searchBar.onclick = function(e) {
             e.stopPropagation();
             document.getElementById("controlHeight").style.display = "block";
-            d3.select("body").style("opacity", 0.5);
+            d3.select("#navbar").style("opacity", 0.5);
+            d3.select(".chart-container").style("opacity", 0.5);
             
         }
         searchBar.addEventListener("keyup", searchFunc);
 
         function bodyClicked(e) {
-            d3.select("body").style("opacity", 1);
+            d3.select("#navbar").style("opacity", 1);
+            d3.select(".chart-container").style("opacity", 1);
             document.getElementById("controlHeight").style.display = "none";
 
         }
 
         function searchFunc() {
             // let input = document.getElementById("searchBar");
-            d3.select("body").style("opacity", 0.5);
+            d3.select("#navbar").style("opacity", 0.5);
+            d3.select(".chart-container").style("opacity", 0.5);
             document.getElementById("controlHeight").style.display = "block";
             let inputText = searchBar.value.toLowerCase();      // so far entered search term
             let li = document.getElementsByTagName("li"); // array of list tags
@@ -83,7 +86,8 @@ d3.queue()
 
         function selectedCountryName(e) {
             e.stopPropagation();
-            d3.select("body").style("opacity", 1);
+            d3.select("#navbar").style("opacity", 1);
+            d3.select(".chart-container").style("opacity", 1);
             if(!e.target.matches('li')) {
                 return;
             } 
@@ -97,6 +101,7 @@ d3.queue()
                     document.getElementById("searchBar").value = searchTerm;
                     d3.select(".active").classed("active", false);
                     d3.select(`.${searchTerm}`).classed("active", true);
+
                 }
             }
             if(flag === 0)
