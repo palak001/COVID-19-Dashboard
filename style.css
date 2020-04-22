@@ -4,7 +4,6 @@
     margin: 0;
     padding: 0;
     font-family: 'Quicksand', sans-serif;
-    /* border: 1px solid forestgreen; */
 }
 
 body {
@@ -14,15 +13,11 @@ body {
     margin:0;
 }
 
-
-
 .main-container {
     display: flex;
     flex-direction: column;
     flex: 1 0 auto;
 }
-
-
 
 #navbar {
     display: flex;
@@ -37,7 +32,6 @@ body {
     width: 100%;
     box-sizing: border-box;
 }
-
 
 #C, #D{
     font-weight: 1000;
@@ -61,7 +55,6 @@ body {
     flex-direction: row;
     height: 10px;
     padding-left: 40px;
-
 }
 
 #colorScale div{
@@ -76,14 +69,11 @@ body {
     }
 }
 
-
-
 .container {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     position: relative;
-    /* z-index: 2; */
 }
 
 .right {
@@ -94,7 +84,6 @@ body {
 
  .chart-container {
     display: inline-block;
-    /* margin: 1% 2%;  */
     vertical-align: top;
  }
 
@@ -117,7 +106,6 @@ path {
 }
 
 .country.active {
-    /* stroke: black; */
     stroke: black;
     stroke-width: 2px;
 }
@@ -137,13 +125,11 @@ path {
     padding: 10px;
     color: white;
     font-weight: bold;
-    /*  border-radius: 6px; */
 }
 
 .tooltip p {
     margin: 2px;
 }
-
 
 .search {
     width: 90%;
@@ -177,7 +163,6 @@ input {
     box-shadow: none;
     height: 100%;
     background: transparent;
-    /* font-size: 20px; */
 }   
 
 input:focus {
@@ -209,8 +194,6 @@ li:hover {
     background-color: white;
     display: none;
     margin-top: 20%;
-    /* background-color: black; */
-    /* color: white; */
 }
 
 @media (max-width: 600px){
@@ -237,7 +220,6 @@ li:hover {
 #footer{
     display: flex;
     flex-direction: row;
-    /* justify-self: stretch;  */
     align-items: center;
     justify-content: space-evenly;
     background-color: black;
@@ -284,7 +266,6 @@ li:hover {
 #barGraph{
     display: flex;
     flex-direction: column;
-    /* justify-content: space-around; */
     margin-bottom: 20px;
     height: 110vh;
     font-size: 15px;
@@ -330,7 +311,6 @@ li:hover {
     min-height: 100vh;
     position: absolute;
     z-index: 4;
-    /* margin: 25% 5%; */
     font-size: 30px;
     padding: 30px;
     background: white;

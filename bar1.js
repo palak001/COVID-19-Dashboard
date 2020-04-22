@@ -2,15 +2,12 @@ function createBar(dataType) {
     let bar;
     var width = window.innerWidth * .9;
     var height = window.innerHeight / 3 - 30;
-
-    
-
     if(dataType === "confirmed") {
         bar = d3.select("#bar1")
     }
     else if(dataType === "death") {
             bar = d3.select("#bar2")
-        }
+    }
     else if(dataType === "recovered") {
             bar = d3.select("#bar3")
     }
@@ -31,9 +28,10 @@ function createBar(dataType) {
         .style("text-anchor", "middle")
         .style("font-size", "20px")
         .classed("y-axis-label", true);
-
 }
 
+
+//for highlighting bars on hovering
 function highlightBars(date, dataType, colorScale) {
     let bar;
     if(dataType === "confirmed") {
@@ -56,8 +54,9 @@ function highlightBars(date, dataType, colorScale) {
                 return colorScale(d.deaths);
             else if(dataType === "recovered")
                 return colorScale(d.recovered);
-          })
+          });
 }
+
 
 function drawBar(countryData, countryName, countryCode, dataType) {
     let bar;
@@ -71,12 +70,10 @@ function drawBar(countryData, countryName, countryCode, dataType) {
             bar = d3.select("#bar3")
     }
 
-    // console.log(countryName[0]);
-    // let countryNameString = 
     d3.select("#countryName")
         .html(`
         <span style="font-size: 40px">${countryName[0].toUpperCase()}</span>${countryName.substr(1)}
-        `)
+        `);
 
     let padding = {
         top: 10,
@@ -89,7 +86,6 @@ function drawBar(countryData, countryName, countryCode, dataType) {
     var width = window.innerWidth * .9;
     var height = window.innerHeight / 3 - 30;
     let data = countryData[countryName] || countryData[countryCode];
-    // console.log(data);
     if(!data){
         data = [];
         let now = new Date;
@@ -105,12 +101,11 @@ function drawBar(countryData, countryName, countryCode, dataType) {
         var month=date.getMonth()+1 //getMonth is zero based;
         var day=date.getDate();
         data[0].date=year+"-"+month+"-"+day;
-        // console.log(data[0].date);
     }
+
     let xScale = d3.scaleLinear()
                     .domain(d3.extent(data, d => d.date))
                     .range([2*padding.left, width-padding.right]);
-// console.log(d3.extent(data, d => d.date));
     let yScale;
     let max;
     if(dataType === "confirmed") {
@@ -131,17 +126,14 @@ function drawBar(countryData, countryName, countryCode, dataType) {
         .domain([0, d3.max(data, d => d.recovered)])
         .range([height - padding.bottom, padding.top]);
     }
-    // console.log(max);
     
     let barColorDomain = [0, max/1000, max/100, max/10, max];
     let colors = ["#F8B195",   "#F67280",   "#C06C84",   "#6C5B7B",   "#355C7D" ];
     let colorScale = d3.scaleLinear()
                         .domain(barColorDomain)
                         .range(colors);
-    // console.log(colorScale);
 
     let  numBars = data.length;
-    // console.log(data.length);
     let barWidth =  (width -2* padding.right - padding.left) / numBars;
 
     let xAxis = d3.axisBottom(xScale);
@@ -161,7 +153,6 @@ function drawBar(countryData, countryName, countryCode, dataType) {
     bar.select(".y-axis-label")
         .text(`${dataType} cases`);
 
-    // bar.select(".bar-title").text(`${dataType} cases over time`);
     let t = d3.transition()
                 .duration(2000)
                 .ease(d3.easeSinOut);
@@ -198,7 +189,6 @@ function drawBar(countryData, countryName, countryCode, dataType) {
           .attr("y", height - padding.bottom)
           .attr("height", 0)
           .on("mouseover touchstart", function() {
-            //   console.log("mouseover");
             let tooltip = d3.select(".tooltip");
             let tgt = d3.select(d3.event.target);
             let bardata = tgt.data()[0];
@@ -248,7 +238,6 @@ function drawBar(countryData, countryName, countryCode, dataType) {
         })
         .merge(update)
             .attr("x", function(d, i) {
-                // console.log((barWidth + barPadding) * i);
                 return (barWidth) * (i) + 2*padding.left; })
             .attr("width", barWidth - barPadding)
             .transition(t)

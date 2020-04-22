@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>COVID 19 Dashboard</title>
+    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Quicksand:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
@@ -41,51 +41,51 @@
                 </div>
             </div>
         </div>
-            <div class="chart-container">
-                <div id="worldMap">
+        <div class="chart-container">
+            <div id="worldMap">
+                <svg
+                    version="1.1"
+                    baseProfile="full"
+                    xmlns="http://www.w3.org/2000/svg"
+                    id="map">
+                </svg>
+            </div>
+            <div id="text-area">
+                <div>
+                    <p>
+                    </p>
+                </div>
+            </div>
+            <div id="barGraph">
+                <p id = "countryName"></p>
+                <div id = "barGraph1">
                     <svg
                         version="1.1"
                         baseProfile="full"
                         xmlns="http://www.w3.org/2000/svg"
-                        id="map">
+                        id="bar1">
                     </svg>
                 </div>
-                <div id="text-area">
-                    <div>
-                        <p>
-                        </p>
-                    </div>
+                <div id = "barGraph2">
+                    <svg
+                        version="1.1"
+                        baseProfile="full"
+                        xmlns="http://www.w3.org/2000/svg"
+                        id="bar2">
+                    </svg>
                 </div>
-                <div id="barGraph">
-                    <p id = "countryName"></p>
-                    <div id = "barGraph1">
-                        <svg
-                            version="1.1"
-                            baseProfile="full"
-                            xmlns="http://www.w3.org/2000/svg"
-                            id="bar1">
-                        </svg>
-                    </div>
-                    <div id = "barGraph2">
-                        <svg
-                            version="1.1"
-                            baseProfile="full"
-                            xmlns="http://www.w3.org/2000/svg"
-                            id="bar2">
-                        </svg>
-                    </div>
-                    <div id = "barGraph3">
-                        <svg
-                            version="1.1"
-                            baseProfile="full"
-                            xmlns="http://www.w3.org/2000/svg"
-                            id="bar3">
-                        </svg>
-                    </div>
+                <div id = "barGraph3">
+                    <svg
+                        version="1.1"
+                        baseProfile="full"
+                        xmlns="http://www.w3.org/2000/svg"
+                        id="bar3">
+                    </svg>
                 </div>
-                
             </div>
-            <div class="tooltip"></div>
+                
+        </div>
+        <div class="tooltip"></div>
     </div>
     <div id="footer">
         <div id="footer-text">Copyright &copy; 2020 Palak</div>
@@ -97,15 +97,10 @@
             </ul>
         </p>
     </div>
-
-
-    
     <script src="https://d3js.org/d3.v4.js"></script>
     <script src="https://unpkg.com/topojson@3"></script>
     <script src="map.js"></script>
     <script src="app.js"></script>
     <script src="bar1.js"></script>
-
-
 </body>
 </html>

@@ -6,40 +6,36 @@ d3.queue()
         if(error) throw error;
 
         let worldGeoData = topojson.feature(worldMapData, worldMapData.objects.countries).features;
+
+        //draw world map
         createWorldMap();
         drawWorldMap(worldGeoData, worldCaseData.Countries, countryDailyData);
+
+        //show text area
         d3.select("#text-area").style("display", "flex");
-
         Date.prototype.toShortFormat = function() {
-
             var month_names =["Jan","Feb","Mar",
                               "Apr","May","Jun",
                               "Jul","Aug","Sep",
                               "Oct","Nov","Dec"];
-            
             var day = this.getDate();
             var month_index = this.getMonth();
             var year = this.getFullYear();
-            
             return "" + day + " " + month_names[month_index] + " " + year;
         }
-        
         let today = new Date();
-
         d3.select("#text-area").html(`
             <p><span style="color: #F67280">Globally</span>, as of <span style="color: #F67280">2:00am CEST, ${today}</span>, there have been <b>${worldCaseData.Global.TotalConfirmed.toLocaleString()}</b> confirmed cases of COVID-19, including <b>${worldCaseData.Global.TotalDeaths.toLocaleString()}</b> deaths and <b>${worldCaseData.Global.TotalRecovered.toLocaleString()}</b> recovery, reported to WHO.</p>
             <p>Click on the map to see country-wise cases.</p>
         `);
 
-
-
         //list of all country names
+
         let ul = document.getElementById("countryList");
         for(let i = 0; i < worldCaseData.Countries.length; i++) {
             let countryName = worldCaseData.Countries[i].Country;
             let countryCode = worldCaseData.Countries[i].CountryCode;
             let li = document.createElement("li");
-            // console.log(countryName);
             li.innerHTML = `${countryName}`;
             ul.appendChild(li);
         }
@@ -50,8 +46,7 @@ d3.queue()
         let searchBar = document.getElementById("searchBar");
         searchBar.onclick = function(e) {
             e.stopPropagation();
-            document.getElementById("controlHeight").style.display = "block";
-            
+            document.getElementById("controlHeight").style.display = "block";  
         }
         searchBar.addEventListener("keyup", searchFunc);
 
@@ -84,7 +79,6 @@ d3.queue()
             } 
             let searchTerm = e.target.innerText;
             let countries = document.getElementsByClassName("country");
-            // console.log(countries);
             let flag = 0;
             for(let i = 0; i < countries.length; i++) {
                 if(countries[i].classList.contains(searchTerm)) {
