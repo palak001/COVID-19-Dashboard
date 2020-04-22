@@ -71,13 +71,17 @@ function drawBar(countryData, countryName, countryCode, dataType) {
             bar = d3.select("#bar3")
     }
 
+    // console.log(countryName[0]);
+    // let countryNameString = 
     d3.select("#countryName")
-        .text(countryName);
+        .html(`
+        <span style="font-size: 40px">${countryName[0].toUpperCase()}</span>${countryName.substr(1)}
+        `)
 
     let padding = {
-        top: 20,
+        top: 10,
         right: 40,
-        bottom: 20,
+        bottom: 10,
         left: 40
     };
     let barPadding = .5;

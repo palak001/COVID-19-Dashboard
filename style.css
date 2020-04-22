@@ -147,7 +147,7 @@ path {
 
 .search {
     width: 90%;
-    height: 10%;
+    height: 7%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -206,16 +206,16 @@ li:hover {
     min-width: 450px;
     z-index: 5;
     border-radius: 2%;
-    /* background-color: white; */
+    background-color: white;
     display: none;
     margin-top: 20%;
-    background-color: black;
-    color: white;
+    /* background-color: black; */
+    /* color: white; */
 }
 
 @media (max-width: 600px){
     #controlHeight {
-        margin-top: 35%;
+        margin-top: 100px;
     }
 }
 
@@ -241,10 +241,10 @@ li:hover {
     align-items: center;
     justify-content: space-evenly;
     background-color: black;
-    height: 100px;
+    height: 70px;
     width: 100%;
     color: #fff;
-    padding: 20px 0;
+    padding: 10px 0;
 }
 
 #footer ul{
@@ -261,7 +261,7 @@ li:hover {
 
 #footer-text{
     text-transform: uppercase;
-    font-size: 20px;
+    font-size: 15px;
     opacity: 0.6;
     align-self: center;
 }
@@ -284,14 +284,18 @@ li:hover {
 #barGraph{
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     margin-bottom: 20px;
-    height: 100vh;
-    font-size: 20px;
+    height: 110vh;
+    font-size: 15px;
 }
 
-#barGraph h2 {
+#countryName {
     text-align: center;
+    font-size: 30px;
+}
+#countryName span {
+    font-family: 'Cinzel Decorative', cursive;
 }
 
 #barGraph1, #barGraph2, #barGraph3{
@@ -308,8 +312,9 @@ li:hover {
 }
     
 
+
 #text-area p {
-    padding-top: 20px;
+    padding-top: 30px;
     text-align: center;
 }
 
@@ -319,10 +324,13 @@ li:hover {
 }
 
 #text-area {
-    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
     position: absolute;
     z-index: 4;
-    margin: 5% 5%;
+    /* margin: 25% 5%; */
     font-size: 30px;
     padding: 30px;
     background: white;
