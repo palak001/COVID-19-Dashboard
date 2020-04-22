@@ -23,7 +23,7 @@ Have a glimpse of what I've been working on...
 I've provided further functionality to search a particular country to see it's respective statistics. And the website is fully responsive. 
 
 ## Problems Faced
-There have been some error in API's, like it's not returning data for some countries, so there respective graphs are not displayed.
+There have been some error in API's, like it's not returning data for some countries, so their respective graphs are not displayed.
 
 ## Suggestions
 More suggestions and improvements are welcomed.
