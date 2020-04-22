@@ -2,9 +2,9 @@
 
 *"There's only, but respect to The Frontline Fighters in War Against Covid-19. These are hard times but we as humanity stand united."*
 
-I've implemented a COVID 19 Dashboard for country wise statistics about cases that are realtime updated. This project is a part of my participation in an event Kanvas'20 organised by GAWDS, NIT KKR.
+I've implemented a **COVID 19 Dashboard** for country wise statistics about cases that are realtime updated. This project is a part of my participation in an event **[Kanvas'20](http://gawds.in/kanvas/)** organised by **GAWDS, National Institute of Technology, Kurukshetra**.
 
-#### [Website Link!](https://palak001.github.io/COVID-19-Dashboard/) 
+#### [Website Link](https://palak001.github.io/COVID-19-Dashboard/) 
 
 I've used the following API's-
 
