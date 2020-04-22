@@ -103,16 +103,12 @@ function drawWorldMap(geoData, data, countryData) {
                     .style("opacity", 0);
             })
             .on("click", function() {
-                // console.log("clicked");
                 //clear search bar
                 document.getElementById("searchBar").value = "";
                 let country = d3.select(this);
-
+                // console.log(country);
                 d3.select("#text-area").style("display", "none");
                 let isActive = country.classed("active");
-                // let countryName = isActive ? "" : (country.data()[0].properties.Country || country.data()[0].properties.name) ;
-                // let countryCode = isActive ? "" : (country.data()[0].properties.CountryCode || country.data()[0].properties.name);
-
                 let countryName = country.data()[0].properties.Country || country.data()[0].properties.name;
                 let countryCode = country.data()[0].properties.CountryCode || country.data()[0].properties.name;
 

@@ -84,6 +84,7 @@ d3.queue()
             } 
             let searchTerm = e.target.innerText;
             let countries = document.getElementsByClassName("country");
+            // console.log(countries);
             let flag = 0;
             for(let i = 0; i < countries.length; i++) {
                 if(countries[i].classList.contains(searchTerm)) {
@@ -92,13 +93,16 @@ d3.queue()
                     document.getElementById("searchBar").value = searchTerm;
                     d3.select(".active").classed("active", false);
                     d3.select(`.${searchTerm}`).classed("active", true);
-
                 }
             }
             if(flag === 0)
             {
                 document.getElementById("controlHeight").style.display = "none";
                 d3.selectAll(".country").classed("active", false);
+            }
+            else {
+                d3.select(`.${searchTerm}`).dispatch('click');
+
             }
         }
     })
